@@ -1,26 +1,28 @@
+  
 class Genre
-  attr_accessor :name
 
-  @@all = []
+    attr_accessor :name
 
-  def initialize(name)
-    @name = name
-    @@all << self
-  end
+    @@all = []
+     
+    def initialize(type)
+        @name = type
+        @@all << self 
+    end
 
-  def self.all
-    @@all
-  end
 
-  def songs
-    Song.all { |song| song.genre == self }
-  end
+    def self.all
+        @@all
+    end
 
-  def artists
-    songs.map(&:artist)
-  end
+    def songs
+        Song.all { |song| song.genre == self }
+    end
 
-  def add_song(song)
-    songs << song
-  end
+    def artists
+        songs.map{|song| song.artist}.uniq
+    end
+    
+    
+
 end
